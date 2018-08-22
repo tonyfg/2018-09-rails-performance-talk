@@ -1,0 +1,3 @@
+<% organization.hqs.each do |hq| %>
+  <%= hq.name %>: <%= hq.country.name %> (<%= hq.stores.count %> stores) <br>
+<% end %>
