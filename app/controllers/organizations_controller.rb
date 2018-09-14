@@ -6,7 +6,11 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    @organizations = if request.format.html?
+                       Organization.includes(hqs: :country).all
+                     else
+                       Organization.includes(hqs: [:country, :stores]).all
+                     end
   end
 
   # GET /organizations/1
