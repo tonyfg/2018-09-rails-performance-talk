@@ -4,13 +4,11 @@ json.extract! organization, :id, :name, :address, :contact_name, :contact_phone,
 
 json.url organization_url(organization, format: :json)
 
-json.hqs organization.hqs do |hq|
-  json.extract! hq, :id, :name
+json.hqs organization.hq_data do |hq|
+  json.extract! hq, 'id', 'name'
 
-  json.country hq.country.name
-  json.store_count hq.stores.count
+  json.country hq['country_name']
+  json.store_count hq['store_count']
 
-  json.stores hq.stores do |store|
-    json.extract! store, :id, :name
-  end
+  json.stores hq['store_list']
 end
